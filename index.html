@@ -8,30 +8,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --card: #FFFFFF;       /* الكروت بيضا زي ما هي */
-      --cyan: #0284C7;       /* أزرق هادي */
-      --blue: #38BDF8;       /* لبني سوفت */
-      --purple: #64748B;     /* رمادي مزرق */
+      --bg: #F1F5F9;        /* رمادي فاتح هادي مش أبيض بينور */
+      --card: #FFFFFF;       /* الكروت بيضا عشان الكلام يبان */
+      --primary: #334155;    /* كحلي غامق مطفي للأزرار الأساسية */
+      --accent: #475569;     /* رمادي غامق للهوفر واللمسات */
       --text: #1E293B;       /* كحلي غامق للكتابة */
-      --muted: #64748B;      /* رمادي للكتابة الثانوية */
-      --border: #E2E8F0;     /* رمادي فاتح للحدود */
+      --muted: #64748B;      /* رمادي متوسط للكتابة الثانوية */
+      --border: #CBD5E1;     /* رمادي للحدود */
+      --notice: #475569;     /* لون التنبيه بقى رمادي غامق مش لبني فاقع */
     }
     * {margin:0;padding:0;box-sizing:border-box}
     body {
       font-family: 'Outfit', sans-serif;
-      /* دي التغيير الوحيد - الخلفية بقت جراديانت زي اللوجو */
-      background: linear-gradient(135deg, #E0F2FE 0%, #F0F9FF 50%, #F8FAFC 100%);
-      background-attachment: fixed;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
     h1,h2,h3 {font-family: 'Space Grotesk', sans-serif;font-weight:700;color:var(--text)}
     .container {max-width:1100px;margin:auto;padding:0 20px}
     
-    /* Notice */
+    /* Notice - غيرنا اللون الفاقع */
     .notice {
-      background: linear-gradient(90deg, var(--cyan), var(--blue));
-      color: white;
+      background: var(--notice);
+      color: #F8FAFC;
       text-align: center;
       padding: 10px;
       font-size: 14px;
@@ -42,22 +41,21 @@
     header {
       padding:25px 0;
       position:sticky;top:0;z-index:100;
-      background: rgba(248,250,252,0.85);
+      background: rgba(241,245,249,0.9);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     nav {display:flex;justify-content:space-between;align-items:center}
     .logo {font-size:1.4rem;font-weight:700}
     .logo span {
-      background: linear-gradient(90deg, var(--cyan), var(--purple));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
+      color: var(--primary);
     }
     .nav-btn {
-      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      background: var(--primary);
       color:white;padding:10px 20px;border-radius:8px;
       text-decoration:none;font-weight:600;transition:0.3s;
     }
-    .nav-btn:hover {transform:translateY(-2px);box-shadow:0 10px 25px rgba(2,132,199,0.2)}
+    .nav-btn:hover {background: var(--accent);transform:translateY(-2px)}
     
     /* Hero */
     .hero {
@@ -69,15 +67,14 @@
     .hero::before {
       content:'';
       position:absolute;top:-50%;left:-50%;width:200%;height:200%;
-      background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(71,85,105,0.05) 0%, transparent 70%);
       animation: pulse 8s infinite;
     }
     @keyframes pulse {0%,100%{transform:scale(1)} 50%{transform:scale(1.1)}}
     .hero-content {position:relative;z-index:2}
     .hero h1 {font-size:4rem;line-height:1.1;margin-bottom:20px}
     .hero h1 .gradient {
-      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--purple));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
+      color: var(--primary);
     }
     .hero p {max-width:600px;margin:0 auto 30px;color:var(--muted);font-size:1.2rem}
     .hero-tags {display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
@@ -90,8 +87,7 @@
     .work {padding:80px 0}
     .section-title {text-align:center;font-size:2.5rem;margin-bottom:60px}
     .section-title span {
-      background: linear-gradient(90deg, var(--cyan), var(--blue));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent
+      color: var(--primary);
     }
     .work-grid {
       display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;
@@ -99,34 +95,34 @@
     .work-card {
       background: var(--card);border-radius:16px;overflow:hidden;
       border:1px solid var(--border);transition:0.3s;
-      box-shadow: 0 2px 12px rgba(30,41,59,0.04);
+      box-shadow: 0 2px 8px rgba(30,41,59,0.06);
     }
-    .work-card:hover {transform:translateY(-8px);box-shadow:0 8px 24px rgba(30,41,59,0.08)}
+    .work-card:hover {transform:translateY(-8px);box-shadow:0 8px 20px rgba(30,41,59,0.1)}
     .work-img {
       height:200px;
-      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      background: var(--primary);
       display:flex;align-items:center;justify-content:center;
       font-size:3rem;color:white;
     }
     .work-content {padding:25px}
     .work-content h3 {margin-bottom:10px}
     .work-content p {color:var(--muted);margin-bottom:15px}
-    .work-link {color:var(--cyan);text-decoration:none;font-weight:600}
+    .work-link {color:var(--primary);text-decoration:none;font-weight:600}
     
     /* Contact */
     .contact {padding:80px 0;text-align:center}
     .contact-box {
       background: var(--card);border:1px solid var(--border);border-radius:16px;
       padding:50px;max-width:600px;margin:0 auto;
-      box-shadow: 0 2px 12px rgba(30,41,59,0.04);
+      box-shadow: 0 2px 8px rgba(30,41,59,0.06);
     }
     .contact-btn {
-      background: linear-gradient(90deg, var(--cyan), var(--blue));
+      background: var(--primary);
       color:white;padding:15px 35px;border-radius:8px;
       text-decoration:none;font-weight:700;display:inline-block;
       margin-top:20px;transition:0.3s;
     }
-    .contact-btn:hover {transform:translateY(-2px);box-shadow:0 8px 20px rgba(2,132,199,0.25)}
+    .contact-btn:hover {background: var(--accent);transform:translateY(-2px)}
     
     /* Footer */
     footer {padding:40px 0;text-align:center;border-top:1px solid var(--border)}
@@ -134,7 +130,7 @@
     .socials a {
       color:var(--muted);font-size:1.5rem;margin:0 12px;transition:0.3s;
     }
-    .socials a:hover {color:var(--cyan)}
+    .socials a:hover {color:var(--primary)}
     
     @media(max-width:768px){
       .hero h1{font-size:2.8rem}
@@ -191,6 +187,7 @@
             <p>Dark theme landing page for $3k/year B2B product. Glassmorphism & WhatsApp integration.</p>
             <a href="#" class="work-link">Case Study →</a>
           </div>
+        </div>
         <div class="work-card">
           <div class="work-img"><i class="fa-solid fa-rocket"></i></div>
           <div class="work-content">
