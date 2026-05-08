@@ -8,18 +8,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --card: #1E293B;       /* كروت غامقة عشان تبان على الخلفية */
-      --primary: #38BDF8;    /* لبني للأزرار واللينكات */
-      --accent: #818CF8;     /* موف سوفت */
-      --text: #F1F5F9;       /* كتابة فاتحة */
-      --muted: #94A3B8;      /* رمادي فاتح للكتابة الثانوية */
-      --border: #334155;     /* حدود غامقة */
-      --notice: #334155;     /* لون التنبيه */
+      --card: #1E293B;       
+      --primary: #64748B;    /* شيلت اللبني الفاقع. ده كحلي هادي */
+      --primary-hover: #475569; /* للهوفر */
+      --text: #CBD5E1;       /* رمادي فاتح للكتابة */
+      --muted: #94A3B8;      /* رمادي للكتابة الثانوية */
+      --border: #334155;     
+      --notice: #334155;     
     }
     * {margin:0;padding:0;box-sizing:border-box}
     body {
       font-family: 'Outfit', sans-serif;
-      /* الخلفية الجديدة زي الصورة بالظبط */
       background-color: #0F172A;
       background-image: 
         radial-gradient(at 20% 25%, #06B6D4 0px, transparent 50%),
@@ -36,7 +35,7 @@
     /* Notice */
     .notice {
       background: var(--notice);
-      color: #F8FAFC;
+      color: #E2E8F0;
       text-align: center;
       padding: 10px;
       font-size: 14px;
@@ -52,16 +51,19 @@
       border-bottom: 1px solid var(--border);
     }
     nav {display:flex;justify-content:space-between;align-items:center}
-    .logo {font-size:1.4rem;font-weight:700}
+    .logo {font-size:1.4rem;font-weight:700;color:var(--text)}
+    /* اللوجو جراديانت زي الخلفية */
     .logo span {
-      color: var(--primary);
+      background: linear-gradient(135deg, #06B6D4, #FDE047, #F9A8D4, #FB923C);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
     }
     .nav-btn {
       background: var(--primary);
-      color:#0F172A;padding:10px 20px;border-radius:8px;
+      color:#F1F5F9;padding:10px 20px;border-radius:8px;
       text-decoration:none;font-weight:600;transition:0.3s;
     }
-    .nav-btn:hover {background: #0EA5E9;transform:translateY(-2px)}
+    .nav-btn:hover {background: var(--primary-hover);transform:translateY(-2px)}
     
     /* Hero */
     .hero {
@@ -73,7 +75,7 @@
     .hero-content {position:relative;z-index:2}
     .hero h1 {font-size:4rem;line-height:1.1;margin-bottom:20px}
     .hero h1 .gradient {
-      color: var(--primary);
+      color: var(--text); /* شيلت اللبني الفاقع من هنا كمان */
     }
     .hero p {max-width:600px;margin:0 auto 30px;color:var(--muted);font-size:1.2rem}
     .hero-tags {display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
@@ -86,7 +88,7 @@
     .work {padding:80px 0}
     .section-title {text-align:center;font-size:2.5rem;margin-bottom:60px}
     .section-title span {
-      color: var(--primary);
+      color: var(--text); /* شيلت اللبني الفاقع */
     }
     .work-grid {
       display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px;
@@ -99,14 +101,15 @@
     .work-card:hover {transform:translateY(-8px);background: rgba(30,41,59,0.9)}
     .work-img {
       height:200px;
-      background: linear-gradient(135deg, #06B6D4, #F9A8D4);
+      background: linear-gradient(135deg, #475569, #64748B); /* شيلت الجراديانت الفاقع */
       display:flex;align-items:center;justify-content:center;
-      font-size:3rem;color:white;
+      font-size:3rem;color:#E2E8F0;
     }
     .work-content {padding:25px}
-    .work-content h3 {margin-bottom:10px}
+    .work-content h3 {margin-bottom:10px;color:var(--text)}
     .work-content p {color:var(--muted);margin-bottom:15px}
-    .work-link {color:var(--primary);text-decoration:none;font-weight:600}
+    .work-link {color:var(--muted);text-decoration:none;font-weight:600} /* شيلت اللبني الفاقع */
+    .work-link:hover {color:var(--text)}
     
     /* Contact */
     .contact {padding:80px 0;text-align:center}
@@ -117,11 +120,11 @@
     }
     .contact-btn {
       background: var(--primary);
-      color:#0F172A;padding:15px 35px;border-radius:8px;
+      color:#F1F5F9;padding:15px 35px;border-radius:8px;
       text-decoration:none;font-weight:700;display:inline-block;
       margin-top:20px;transition:0.3s;
     }
-    .contact-btn:hover {background: #0EA5E9;transform:translateY(-2px)}
+    .contact-btn:hover {background: var(--primary-hover);transform:translateY(-2px)}
     
     /* Footer */
     footer {padding:40px 0;text-align:center;border-top:1px solid var(--border)}
@@ -129,7 +132,7 @@
     .socials a {
       color:var(--muted);font-size:1.5rem;margin:0 12px;transition:0.3s;
     }
-    .socials a:hover {color:var(--primary)}
+    .socials a:hover {color:var(--text)}
     
     @media(max-width:768px){
       .hero h1{font-size:2.8rem}
