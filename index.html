@@ -81,7 +81,7 @@
       border:1px solid var(--border);font-size:0.9rem;color:var(--muted);
       backdrop-filter: blur(8px);transition:0.3s;cursor:pointer;
     }
-.tag:hover {
+.tag:hover,.tag.active {
       background: var(--primary);
       color: #0A0F1A;
       border-color: var(--primary);
@@ -100,6 +100,7 @@
       backdrop-filter: blur(12px);
     }
 .work-card:hover {transform:translateY(-8px);background: rgba(30,41,59,0.9)}
+.work-card.hidden {display:none}
 .work-img {
       height:200px;
       background: #334155;
@@ -133,28 +134,23 @@
     }
 .socials a:hover {color:var(--primary)}
 
- .modal-overlay {
+.modal-overlay {
       position: fixed;top: 0;left: 0;width: 100%;height: 100%;
       background: rgba(0,0,0,0.8);z-index: 2000;display: none;
       justify-content: center;align-items: center;padding: 20px;
     }
- .modal-content {
+.modal-content {
       background: rgba(30,41,59,0.95);border:1px solid var(--border);
       border-radius:16px;max-width: 700px;width: 100%;max-height: 90vh;
       overflow-y: auto;position: relative;padding: 40px;
       backdrop-filter: blur(20px);
     }
- .close-modal {
+.close-modal {
       position: absolute;top: 15px;right: 20px;background: none;
       border: none;font-size: 28px;cursor: pointer;color: var(--muted);
     }
- .close-modal:hover {color: var(--primary)}
- .modal-img {
-      width: 100%;height: 250px;background: #334155;border-radius: 12px;
-      display:flex;align-items:center;justify-content:center;
-      font-size:4rem;color:var(--muted);margin-bottom:25px;
-    }
- .modal-tag {
+.close-modal:hover {color: var(--primary)}
+.modal-tag {
       display: inline-block;background: var(--primary);color: #0A0F1A;
       padding: 5px 15px;border-radius: 50px;font-size: 12px;
       font-weight: 700;margin-bottom: 15px;
@@ -186,10 +182,11 @@
         <h1>Digital Designer<br><span class="gradient">Building Premium Experiences</span></h1>
         <p>I help brands and startups craft websites that convert. Specialized in high-end UI/UX for clients paying $3k+ per project.</p>
         <div class="hero-tags">
-          <span class="tag">UI/UX Design</span>
-          <span class="tag">Web Development</span>
-          <span class="tag">Brand Identity</span>
-          <span class="tag">SaaS & E-Commerce</span>
+          <span class="tag active" data-filter="all">View All</span>
+          <span class="tag" data-filter="UI/UX">UI/UX Design</span>
+          <span class="tag" data-filter="Web">Web Development</span>
+          <span class="tag" data-filter="Brand">Brand Identity</span>
+          <span class="tag" data-filter="SaaS">SaaS & E-Commerce</span>
         </div>
         <a href="#work" class="nav-btn">View My Work</a>
       </div>
@@ -200,28 +197,21 @@
     <div class="container">
       <h2 class="section-title">Featured <span>Projects</span></h2>
       <div class="work-grid">
-        <div class="work-card">
+        <!-- Saged Shop -->
+        <div class="work-card" data-category="SaaS UI/UX Web">
           <div class="work-img"><i class="fa-solid fa-store"></i></div>
           <div class="work-content">
-            <h3>Saged Luxury Store</h3>
+            <h3>Saged Shop</h3>
             <p>Premium e-commerce UI with gold/black theme. Increased client conversion by 40%.</p>
-            <button class="work-link" onclick="openProjectModal('saged')">Case Study →</button>
+            <a href="https://saged-5.github.io/shop/" target="_blank" class="work-link">Case Study →</a>
           </div>
-        </div>
-        <div class="work-card">
+        <!-- CloudSync Pro -->
+        <div class="work-card" data-category="SaaS Web UI/UX">
           <div class="work-img"><i class="fa-solid fa-cloud"></i></div>
           <div class="work-content">
-            <h3>CloudSync Pro SaaS</h3>
+            <h3>CloudSync Pro</h3>
             <p>Dark theme landing page for $3k/year B2B product. Glassmorphism & WhatsApp integration.</p>
-            <button class="work-link" onclick="openProjectModal('cloudsync')">Case Study →</button>
-          </div>
-        </div>
-        <div class="work-card">
-          <div class="work-img"><i class="fa-solid fa-rocket"></i></div>
-          <div class="work-content">
-            <h3>Startup Launch Kit</h3>
-            <p>Complete brand + website package for tech startups. Delivered in 7 days.</p>
-            <button class="work-link" onclick="openProjectModal('startup')">Case Study →</button>
+            <a href="https://saged-5.github.io/cloundsync-pro/" target="_blank" class="work-link">Case Study →</a>
           </div>
         </div>
       </div>
@@ -249,46 +239,31 @@
     </div>
   </footer>
 
-  <!-- Project Modal -->
-  <div class="modal-overlay" id="project-modal">
+  <!-- Contact Modal -->
+  <div class="modal-overlay" id="contact-modal">
     <div class="modal-content" id="modal-content"></div>
   </div>
 
   <script>
-    const projects = {
-      saged: {
-        icon: 'fa-store',
-        title: 'Saged Luxury Store',
-        desc: 'Premium e-commerce UI with gold/black theme. Designed for high-ticket luxury brands targeting $500+ AOV customers. Features custom animations, advanced filtering, and checkout optimization that increased client conversion by 40%.',
-        tools: 'Figma, React, Tailwind, Stripe'
-      },
-      cloudsync: {
-        icon: 'fa-cloud',
-        title: 'CloudSync Pro SaaS',
-        desc: 'Dark theme B2B landing page for $3k/year subscription product. Built with glassmorphism design, interactive dashboard previews, and WhatsApp integration for instant sales calls. Reduced bounce rate by 35%.',
-        tools: 'Figma, Next.js, Framer Motion'
-      },
-      startup: {
-        icon: 'fa-rocket',
-        title: 'Startup Launch Kit',
-        desc: 'Complete brand identity + website package for tech startups. Includes logo, brand guidelines, and 5-page responsive website. Delivered in 7 days with 2 rounds of revisions. Perfect for pre-seed startups.',
-        tools: 'Figma, Webflow, Adobe Suite'
-      }
-    };
-
-    function openProjectModal(projectId) {
-      const p = projects[projectId];
-      document.getElementById('modal-content').innerHTML = `
-        <button class="close-modal" onclick="closeModal()">&times;</button>
-        <div class="modal-tag">DEMO PROJECT</div>
-        <div class="modal-img"><i class="fa-solid ${p.icon}"></i></div>
-        <h2 style="margin-bottom:15px">${p.title}</h2>
-        <p style="color:var(--muted);margin-bottom:20px;line-height:1.8">${p.desc}</p>
-        <p style="color:var(--muted);margin-bottom:30px"><strong style="color:var(--text)">Tools Used:</strong> ${p.tools}</p>
-        <p style="color:var(--primary);font-weight:600">This is a demo showcase. No real case study available.</p>
-      `;
-      document.getElementById('project-modal').style.display = 'flex';
-    }
+    // الفلتر
+    document.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', function() {
+        document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        const cards = document.querySelectorAll('.work-card');
+        
+        cards.forEach(card => {
+          const categories = card.getAttribute('data-category');
+          if (filter === 'all' || categories.includes(filter)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
 
     function openContactModal() {
       document.getElementById('modal-content').innerHTML = `
@@ -299,15 +274,15 @@
         <p style="color:var(--muted);margin-bottom:30px">For actual projects, please reach out through WhatsApp or Instagram below.</p>
         <button class="contact-btn" onclick="closeModal()">Got It</button>
       `;
-      document.getElementById('project-modal').style.display = 'flex';
+      document.getElementById('contact-modal').style.display = 'flex';
     }
 
     function closeModal() {
-      document.getElementById('project-modal').style.display = 'none';
+      document.getElementById('contact-modal').style.display = 'none';
     }
 
     // Close modal on overlay click
-    document.getElementById('project-modal').addEventListener('click', function(e) {
+    document.getElementById('contact-modal').addEventListener('click', function(e) {
       if (e.target === this) closeModal();
     });
   </script>
